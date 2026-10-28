@@ -19,6 +19,7 @@ endif()
 
 # add_subdirectory(LibraryC)
 add_subdirectory(LibraryCPP)
+add_subdirectory("Lab3CPP")
 add_subdirectory(LibraryCPPClass)
 add_subdirectory(LibraryCPPTemplate)
 

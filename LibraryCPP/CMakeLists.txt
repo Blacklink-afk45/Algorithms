@@ -1,8 +1,10 @@
-add_library(LibraryCPP STATIC list.cpp queue.cpp stack.cpp vector.cpp)
-target_include_directories(LibraryCPP PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_compile_features(LibraryCPP PUBLIC cxx_std_17)
+cmake_minimum_required(VERSION 3.10)
+project(LibraryCPP)
 
-add_executable(library_cpp_main main.cpp)
-target_link_libraries(library_cpp_main PRIVATE LibraryCPP)
+set(CMAKE_CXX_STANDARD 11)
+
+add_library(LibraryCPP STATIC array.cpp list.cpp queue.cpp stack.cpp vector.cpp)
 
 add_subdirectory(Tests)
+
+# add_subdirectory(../Lab3CPP ../Lab3CPP/build)
