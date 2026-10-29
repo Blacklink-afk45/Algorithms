@@ -5,9 +5,11 @@ target_link_libraries(testarray LibraryCPP)
 
 add_executable(testlist list.cpp)
 target_link_libraries(testlist LibraryCPP)
-
+add_test(NAME testlist COMMAND testlist)
 add_executable(testqueue queue.cpp)
 target_link_libraries(testqueue LibraryCPP)
+
+add_test(NAME testqueue COMMAND testqueue)
 
 add_executable(teststack stack.cpp)
 target_link_libraries(teststack LibraryCPP)
