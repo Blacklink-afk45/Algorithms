@@ -8,13 +8,11 @@ struct ListItem {
 
 struct List {
     ListItem dummy;
-    ListItem* last;
 };
 
 List* list_create() {
     List* list = new List;
     list->dummy = {0, &list->dummy, true};
-    list->last = &list->dummy;
     return list;
 }
 
@@ -29,7 +27,10 @@ ListItem* list_first(List* list) {
 }
 
 ListItem* list_last(List* list) {
-    return list->last == &list->dummy ? nullptr : list->last;
+    ListItem* item = list_first(list);
+    if (!item) return nullptr;
+    while (item->next != &list->dummy) item = item->next;
+    return item;
 }
 
 Data list_item_data(const ListItem* item) {
@@ -48,7 +49,6 @@ ListItem* list_insert_after(List* list, ListItem* item, Data data) {
     if (!item) item = &list->dummy;
     ListItem* added = new ListItem{data, item->next, false};
     item->next = added;
-    if (list->last == item) list->last = added;
     return added;
 }
 
@@ -61,7 +61,6 @@ ListItem* list_erase_next(List* list, ListItem* item) {
     ListItem* removed = item->next;
     if (removed == &list->dummy) return nullptr;
     item->next = removed->next;
-    if (list->last == removed) list->last = item;
     delete removed;
     return list_item_next(item);
 }
